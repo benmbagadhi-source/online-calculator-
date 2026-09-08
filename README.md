@@ -1,5 +1,3 @@
-# online-calculator-
-mathematics and other related fields 
 <!DOCTYPE html>
 <html>
 <head>
