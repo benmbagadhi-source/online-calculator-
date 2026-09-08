@@ -1,2 +1,58 @@
 # online-calculator-
 mathematics and other related fields 
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculator</title>
+<style>
+body{font-family:Arial;background:#111;display:flex;justify-content:center;padding:20px}
+.calc{background:#222;padding:20px;border-radius:16px;width:100%;max-width:320px}
+#display{width:100%;height:60px;font-size:32px;text-align:right;margin-bottom:15px;border:none;border-radius:8px;padding:10px;background:#000;color:#fff}
+.keys{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+button{height:60px;font-size:20px;border:none;border-radius:10px;background:#333;color:white}
+button.op{background:#ff9500}
+button.eq{background:#28a745;grid-column:span 2}
+button.clr{background:#ff3b30}
+</style>
+</head>
+<body>
+<div class="calc">
+<input id="display" disabled>
+<div class="keys">
+<button class="clr" onclick="clearAll()">AC</button>
+<button onclick="del()">DEL</button>
+<button onclick="add('%')">%</button>
+<button class="op" onclick="add('/')">/</button>
+<button onclick="add('7')">7</button>
+<button onclick="add('8')">8</button>
+<button onclick="add('9')">9</button>
+<button class="op" onclick="add('*')">*</button>
+<button onclick="add('4')">4</button>
+<button onclick="add('5')">5</button>
+<button onclick="add('6')">6</button>
+<button class="op" onclick="add('-')">-</button>
+<button onclick="add('1')">1</button>
+<button onclick="add('2')">2</button>
+<button onclick="add('3')">3</button>
+<button class="op" onclick="add('+')">+</button>
+<button onclick="add('0')">0</button>
+<button onclick="add('.')">.</button>
+<button class="eq" onclick="calc()">=</button>
+</div>
+</div>
+<script>
+let exp = "";
+let d = document.getElementById('display');
+function add(v){exp+=v; d.value=exp;}
+function clearAll(){exp=""; d.value="";}
+function del(){exp=exp.slice(0,-1); d.value=exp;}
+function calc(){
+  try{
+    let r = Function('"use strict";return('+exp+')')();
+    d.value=r; exp=r.toString();
+  }catch{ d.value="Error"; exp=""; }
+}
+</script>
+</body>
+</html>
